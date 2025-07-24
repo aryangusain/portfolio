@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Poppins } from 'next/font/google'
+import GradientCloud from "@/components/ui/GradientCloud";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'], // adjust weights as needed
+  variable: '--font-poppins',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "Aryan.dev",
@@ -20,9 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} antialiased`}
+        className={`${poppins.className}  flex flex-col items-center antialiased`}
       >
-        {children}
+        <Navbar />
+        <GradientCloud className="inset-auto -z-10"/>
+        <div className="flex h-full w-full flex-col items-center sm:w-150 md:w-200">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );
